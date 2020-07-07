@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.southsystem'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	implementation platform("org.springframework.cloud:spring-cloud-dependencies:Hoxton.RELEASE")
+	implementation platform("org.springframework.boot:spring-boot-dependencies:2.3.1.RELEASE")
+	runtimeOnly platform("org.springframework.cloud:spring-cloud-dependencies:Hoxton.RELEASE")
+	runtimeOnly platform("org.springframework.boot:spring-boot-dependencies:2.3.1.RELEASE")
+
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation("org.springframework.cloud:spring-cloud-stream")
+	implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka")
+	implementation("io.projectreactor.addons:reactor-adapter")
+	implementation("io.projectreactor.addons:reactor-extra")
+	implementation("io.projectreactor:reactor-core")
+	compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.19'
+
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+	useJUnitPlatform()
+}

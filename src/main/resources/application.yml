@@ -1,0 +1,22 @@
+server:
+  port: 8181
+
+spring:
+  application:
+    name: teste
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+          autoCreateTopics: true
+          headers: type
+      bindings:
+        lines:
+          destination: lines2
+          partitionCount: 2
+        customers:
+          destination: lines2
+          group: ceolin
+          consumer:
+            partitioned: true
