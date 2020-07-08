@@ -1,4 +1,4 @@
-package com.southsystem.test.customer.infra.consumer;
+package com.southsystem.test.business.customer.infra.consumer;
 
 import com.southsystem.test.shared.infra.event.Channels;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -7,11 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @EnableBinding(Channels.class)
-public class CustomerConsumer {
+public class CustomerConsumer extends AbstractConsumer{
 
-    private static final String TYPE = "002";
-
-    @StreamListener(target = Channels.CUSTOMERS, condition = "headers['type']=='" + TYPE + "'")
+    @StreamListener(target = Channels.CUSTOMERS, condition = "headers['type']=='" + ENTITY_CUSTOMER + "'")
     public void consumer(final String message) {
         System.out.println("Consumindo mensagem de consumidor: " + message);
     }

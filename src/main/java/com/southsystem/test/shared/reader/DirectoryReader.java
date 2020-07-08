@@ -16,17 +16,20 @@ import java.nio.file.Paths;
 @Component
 public class DirectoryReader {
 
-    private static final String DIR = "/home/eduardo/data/in";
-
-    @Autowired
-    private FileReader fileReader;
-
+    private final FileReader fileReader;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DirectoryReader.class);
+
+    private static final String DIR = "/home/eduardo/data/in";
+
+    public DirectoryReader(final FileReader fileReader) {
+        this.fileReader = fileReader;
+    }
 
     public Flux<Void> readFiles() {
         return getFiles()
                 .map(Path::toString)
+                .doOnNext(path -> LOGGER.info("Path found: {}", path))
                 .flatMap(fileReader::readFile)
                 .subscribeOn(Schedulers.elastic())
                 ;

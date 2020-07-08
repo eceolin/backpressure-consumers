@@ -1,4 +1,4 @@
-package com.southsystem.test.customer.reader;
+package com.southsystem.test.business.customer.reader;
 
 import com.southsystem.test.shared.reader.Reader;
 
